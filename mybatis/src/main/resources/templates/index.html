@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>mysql的test所有数据</title>
+</head>
+<body>
+<table border="1">
+    <thead>
+    <th>序号</th>
+    <th>姓名</th>
+    <th>年龄</th>
+    <th>性别</th>
+    <th>操作</th>
+    </thead>
+    <tbody th:each="user:${userList}">
+    <tr>
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.age}"></td>
+        <td th:text="${user.gender}"></td>
+        <!-- 在当前模板中的()将会解析为 ?传值
+            '/deleteById/'+${user.id} 避免/与$两个符号在一起解析错误链接
+        -->
+        <td><a th:href="@{'/deleteById/'+${user.id}}">删除</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
